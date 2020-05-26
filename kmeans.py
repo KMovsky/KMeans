@@ -111,17 +111,12 @@ def update(k):
 
 
 #############################################################
-#tzw. firstrun, czyli pokaz pierwszy slajd, assigment, pokaz slajd, update, pokaz slajd
+#tzw. firstrun, czyli pokaz pierwszy slajd, assigment, pokaz slajd
 first_slide()
 plt.show()
 
 dots = assignment(dots, centroids)
 slide_after_assigment()
-plt.show()
-
-old_centroids = copy.deepcopy(centroids)
-centroids = update(centroids)
-slide_after_update()
 plt.show()
 
 
@@ -132,14 +127,14 @@ iteration_sum = 1
 while True:
     iteration_sum += 1
 
-    dots = assignment(dots, centroids)
-    slide_after_assigment()
-    plt.show()
-
     old_centroids = copy.deepcopy(centroids)
     closest_centroids = dots['closest'].copy(deep=True) #skopiuj wartosci 'closest' do closest_centroids
     centroids = update(centroids)
     slide_after_update()
+    plt.show()
+
+    dots = assignment(dots, centroids)
+    slide_after_assigment()
     plt.show()
 
     if closest_centroids.equals(dots['closest']): #porownaj wartosci 'closest' z closest_centroids
